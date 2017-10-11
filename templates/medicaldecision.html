@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block medicalp %}
+{##}
+{#    {% if title %}#}
+{#        <p>{{ title }}</p>#}
+{#     {% endif %}#}
+
+ <div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+    </div></div></div></div></div></div>
+{% if obj %}
+    <div class="container">
+    <table class="table">
+    <thead class="thead-inverse">
+    <tr>
+      <th>S.no</th>
+      <th>PatientId</th>
+      <th>Name</th>
+      <th>DateOfBirth</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>BloodGlucoserange</th>
+      <th>Bloodpressure</th>
+      <th>HeartRates</th>
+      <th>SkinThikness</th>
+      <th>Pragnencyperyear</th>
+
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <td>{{ obj.id }}</td>
+      <td>{{ obj.patientid.patientid }}</td>
+      <td>{{ obj.patientid.Name }}</td>
+      <td>{{obj.patientid.DateofBirth }}</td>
+      <td>{{ obj.patientid.Email }}</td>
+      <td>{{ obj.patientid.Address }}</td>
+      <td>{{ obj.BloodGlucoseRange }}</td>
+      <td>{{ obj.BloodPressure }}</td>
+      <td>{{ obj.HeartRates }}</td>
+      <td>{{obj.SkinThikness }}</td>
+      <td>{{ obj.PragnencyParYear }}</td>
+
+    </tr>
+   </tbody>
+ </table>
+
+{%endif%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <div class="panel panel-primary">
+              <div class="panel-heading">MedicalProvider</div>
+                <div class="panel-body">
+{% if messages %}
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-4">
+        {% for message in messages %}
+        {% if 'dupdate' in message.tags %}
+        <p class="alert alert-info"> {{ message }}</p>
+        {% endif %}
+        {% endfor%}
+{% endif %}
+  </div>
+
+  {% if form%}
+          <div class="container">
+             <form action="" method="post">
+               {% csrf_token %}
+                {{form.as_p}}
+               <input type="submit" value="submit form" class="btn btn-default" />
+                </form>
+               </div>
+  {% endif %}
+
+
+
+ </div></div></div></div></div>
+{% endblock %}
+

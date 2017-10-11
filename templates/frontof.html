@@ -1,0 +1,96 @@
+{% extends 'panel.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block formblock %}
+{#{% if confirm_message %}#}
+{#    <p>{{ confirm_message }}</p>#}
+{#    {% endif %}#}
+{% if messages %}
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-6">
+        {% for message in messages %}
+        {% if message.tags == "success" %}
+        <p class="alert alert-success"> {{ message }}</p>
+        {% endif %}
+        {% if message.tags == "info" %}
+        <p class="alert alert-info">{{ message }}</p>
+        {% endif %}
+        {% if message.tags == "warning" %}
+        <p class="alert alert-warning">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</div>
+ {% endif %}
+{% if form %}
+    <form action="" method="post">{% csrf_token %}
+     {{form|crispy}}
+     <input type="submit" value="submit form"  name="submit" class="btn btn-default" />
+     <input type="submit" value="update form"  name="update" class="btn btn-default" />
+    </form>
+{% endif %}
+
+{% endblock %}
+
+
+{% block searchblock %}
+{##}
+{#    {% if title %}#}
+{#        <p>{{ title }}</p>#}
+{#     {% endif %}#}
+
+    {% if iform%}
+        <form action="" method="post">
+         {% csrf_token %}
+         {{iform|crispy}}
+            {{ ifrom.as_p    }}
+         <input type="submit" value="search" name="search" class="btn btn-default" />
+        </form>
+    {% endif %}
+{% if messages %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6  ">
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <p  class="alert alert-danger">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</div>
+ {% endif %}
+
+
+{% if obj %}
+    <table class="table">
+    <thead class="thead-inverse">
+    <tr>
+      <th>S.no</th>
+      <th>PatientId</th>
+      <th>Name</th>
+      <th>DateOfBirth</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <td>{{ obj.id }}</td>
+      <td>{{ obj.patientid }}</td>
+      <td>{{ obj.Name }}</td>
+      <td>{{obj.DateofBirth }}</td>
+      <td>{{ obj.Email }}</td>
+      <td>{{ obj.Address }}</td>
+    </tr>
+   </tbody>
+ </table>
+{% endif %}
+
+{% endblock %}
+

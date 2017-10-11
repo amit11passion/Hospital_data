@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block searchblock %}
+{##}
+{#    {% if title %}#}
+{#        <p>{{ title }}</p>#}
+{#     {% endif %}#}
+
+
+{% if iform%}
+     <form action="" method="post">
+       {% csrf_token %}
+        {{form|crispy}}
+          {{ from.as_ul    }}
+       <input type="submit" value="submit form" class="btn btn-default" />
+        </form>
+    {% endif %}
+
+{% if obj %}
+    <table class="table">
+    <thead class="thead-inverse">
+    <tr>
+      <th>S.no</th>
+      <th>PatientId</th>
+      <th>Name</th>
+      <th>DateOfBirth</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <td>{{ obj.id }}</td>
+      <td>{{ obj.patientid }}</td>
+      <td>{{ obj.Name }}</td>
+      <td>{{obj.DateofBirth }}</td>
+      <td>{{ obj.Email }}</td>
+      <td>{{ obj.Address }}</td>
+    </tr>
+   </tbody>
+ </table>
+{% endif %}
+{% endblock %}

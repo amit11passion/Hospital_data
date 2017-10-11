@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block frontoffice %}
+
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-primary">
+      <div class="panel-body">
+          {% block login %}
+          {% endblock %}
+      </div>
+ </div>
+</div>
+
+<div class="col-md-6 col-md-offset-0">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Patient search</div>
+    <div class="panel-body">
+        {% block searchblock %}
+        {% endblock %}
+    </div>
+  </div>
+ </div>
+</div>
+
+
+<div class="col-md-5 col-md-offset-1">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Patient Personal Detail</div>
+    <div class="panel-body">
+        {% block formblock %}
+        {% endblock %}
+    </div>
+  </div>
+ </div>
+</div>
+{% endblock %}
